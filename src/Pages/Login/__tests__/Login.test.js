@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import userEvent from "@testing-library/user-event";
 import axios from 'axios';
 import Login from '../index';
 
@@ -37,7 +38,7 @@ describe('Login page', () => {
 
   it('calls axios when the sign in button in clicked', () => {
     render(<Login />);
-    fireEvent.click(screen.getByText('Sign in'));
+    userEvent.click(screen.getByText('Sign in'));
     expect(axios.post).toHaveBeenCalled()
   })
 
@@ -53,9 +54,9 @@ describe('Login page', () => {
       "type":"USER_PASSWORD_AUTH"
     }
     render(<Login />);
-    fireEvent.change(screen.getByTestId('username-input'), {target: {value: data.username}})
-    fireEvent.change(screen.getByTestId('password-input'), {target: {value: data.password}})
-    fireEvent.click(screen.getByText('Sign in'));
+    userEvent.type(screen.getByTestId('username-input'), data.username)
+    userEvent.type(screen.getByTestId('password-input'), data.password)
+    userEvent.click(screen.getByText('Sign in'));
     expect(axios.post).toHaveBeenCalledWith(url, headers, data);
   })
 })
