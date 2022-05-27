@@ -37,8 +37,25 @@ describe('Login page', () => {
 
   it('calls axios when the sign in button in clicked', () => {
     render(<Login />);
-    const submitBtn = screen.getByText('Sign in');
-    fireEvent.click(submitBtn);
+    fireEvent.click(screen.getByText('Sign in'));
     expect(axios.post).toHaveBeenCalled()
+  })
+
+  it('calls the API with the correct data', () => {
+    const url = 'https://api.bybits.co.uk/auth/token'
+    const headers = {
+        'environment': 'mock',
+        'Content-Type': 'application/json'
+    }
+    const data = {
+      "username":"testuser",
+      "password":"1234",
+      "type":"USER_PASSWORD_AUTH"
+    }
+    render(<Login />);
+    fireEvent.change(screen.getByTestId('username-input'), {target: {value: data.username}})
+    fireEvent.change(screen.getByTestId('password-input'), {target: {value: data.password}})
+    fireEvent.click(screen.getByText('Sign in'));
+    expect(axios.post).toHaveBeenCalledWith(url, headers, data);
   })
 })
