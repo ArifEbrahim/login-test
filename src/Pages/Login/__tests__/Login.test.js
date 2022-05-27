@@ -6,7 +6,15 @@ import Login from '../index';
 describe('Login page', () => {
   it('has an element with the correct header text', () => {
     render(<Login />);
-    const headerEl = screen.getByText('Sign In')
-    expect(headerEl).toBeInTheDocument();
+    const header = screen.getByText('Sign In');
+    expect(header).toBeInTheDocument();
   })
+
+  it('has username field', () => {
+    render(<Login />);
+    const usernameLabel = screen.getByLabelText('User Name');
+    expect(usernameLabel).toBeInTheDocument();
+    const usernameInput = screen.getByTestId('user-name-input');
+    expect(usernameInput).toBeInTheDocument();
+  })  
 })
