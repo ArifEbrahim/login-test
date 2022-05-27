@@ -9,6 +9,7 @@ export default function Login() {
         <input type='text' name='username' id='username' data-testid='username-input'/>
         <label htmlFor='password'>Password</label>
         <input type='text' name='password' id='password' data-testid='password-input'/>
+        <button type='button'>Sign in</button>
       </form>
     </div>
 

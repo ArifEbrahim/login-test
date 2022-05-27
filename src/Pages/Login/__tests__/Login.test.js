@@ -10,7 +10,7 @@ describe('Login page', () => {
     expect(header).toBeInTheDocument();
   })
 
-  it('has a username field', () => {
+  it('has a username label & input field', () => {
     render(<Login />);
     const usernameLabel = screen.getByLabelText('User Name');
     const usernameInput = screen.getByTestId('username-input');
@@ -18,11 +18,17 @@ describe('Login page', () => {
     expect(usernameInput).toBeInTheDocument();
   })  
 
-  it('has a password field', () => {
+  it('has a password label & input field', () => {
     render(<Login />);
     const passwordLabel = screen.getByLabelText('Password');
     const passwordInput = screen.getByTestId('password-input');
     expect(passwordLabel).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
   })  
+
+  it('has a sign in button', () => {
+    render(<Login />);
+    const submitBtn = screen.getByText('Sign in')
+    expect(submitBtn).toBeInTheDocument();
+  })
 })
