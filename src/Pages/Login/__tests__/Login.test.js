@@ -10,11 +10,19 @@ describe('Login page', () => {
     expect(header).toBeInTheDocument();
   })
 
-  it('has username field', () => {
+  it('has a username field', () => {
     render(<Login />);
     const usernameLabel = screen.getByLabelText('User Name');
+    const usernameInput = screen.getByTestId('username-input');
     expect(usernameLabel).toBeInTheDocument();
-    const usernameInput = screen.getByTestId('user-name-input');
     expect(usernameInput).toBeInTheDocument();
+  })  
+
+  it('has a password field', () => {
+    render(<Login />);
+    const passwordLabel = screen.getByLabelText('Password');
+    const passwordInput = screen.getByTestId('password-input');
+    expect(passwordLabel).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
   })  
 })
