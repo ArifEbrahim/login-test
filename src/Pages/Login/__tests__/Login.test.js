@@ -16,7 +16,7 @@ describe("Login page", () => {
 
   it("has a username label & input field", () => {
     render(<Login />);
-    const usernameLabel = screen.getByLabelText("User Name");
+    const usernameLabel = screen.getByLabelText("Username");
     const usernameInput = screen.getByTestId("username-input");
     expect(usernameLabel).toBeInTheDocument();
     expect(usernameInput).toBeInTheDocument();

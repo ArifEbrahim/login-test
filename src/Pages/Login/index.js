@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Login.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -20,38 +21,42 @@ export default function Login() {
     };
     try {
       const response = await axios.post(url, data, config);
-      const access_token = response.data.access_token;
-      localStorage.setItem('token', access_token);
-    } catch (error) {
-      console.log(error)
-    }
-
+      localStorage.setItem("token", response.data.access_token);
+    } catch (error) {}
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-
-        <label htmlFor="username">User Name</label>
-        <input
-          type="text"
-          id="username"
-          data-testid="username-input"
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          id="password"
-          data-testid="password-input"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-        <button type="button" onClick={handleClick}>
-          Sign in
-        </button>
-
+    <div className="login-container">
+      <header className="login-header">
+        <h2>Sign In</h2>
+      </header>
+      <main className="form-container-1">
+        <form>
+          <div className="form-container-2">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              data-testid="username-input"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="text"
+              id="password"
+              data-testid="password-input"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            <div className="btn-container">
+              <button className='btn' type="button" onClick={handleClick}>
+                <span className="btn-text">Sign in</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </main>
     </div>
   );
 }
