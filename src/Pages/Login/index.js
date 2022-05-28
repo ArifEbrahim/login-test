@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Input from "../../Components/Input";
 import "./Login.css";
 
 export default function Login() {
@@ -33,21 +34,17 @@ export default function Login() {
       <main className="form-container-1">
         <form>
           <div className="form-container-2">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              data-testid="username-input"
-              onChange={(e) => setUsername(e.target.value)}
+            <Input
+              onChange={setUsername}
               value={username}
+              label="Username"
+              id="username"
             />
-            <label htmlFor="password">Password</label>
-            <input
-              type="text"
-              id="password"
-              data-testid="password-input"
-              onChange={(e) => setPassword(e.target.value)}
+            <Input
+              onChange={setPassword}
               value={password}
+              label="Password"
+              id='password'
             />
             <div className="btn-container">
               <button className='btn' type="button" onClick={handleClick}>
