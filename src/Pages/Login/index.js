@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Input from "../../Components/Input";
+import Button from "../../Components/Button";
 import "./Login.css";
 
 export default function Login() {
@@ -47,9 +48,10 @@ export default function Login() {
               id='password'
             />
             <div className="btn-container">
-              <button className='btn' type="button" onClick={handleClick}>
-                <span className="btn-text">Sign in</span>
-              </button>
+              <Button 
+                text="Sign in"
+                onClick={handleClick}
+              />
             </div>
           </div>
         </form>
