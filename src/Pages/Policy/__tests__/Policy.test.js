@@ -1,8 +1,10 @@
 import React from "react";
-import Policy from "../index";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import axios from "axios";
+import Policy from "../index";
+import APIResponse from "../__mocks__/APIResponse.json";
+import { act } from "react-dom/test-utils";
 
 jest.mock("axios");
 
@@ -32,27 +34,35 @@ describe("Policy page", () => {
     expect(signOutBtn).toBeInTheDocument();
   });
 
-  describe('API tests', () => {
-
+  describe("API tests", () => {
     beforeEach(() => {
       localStorage.setItem("token", "Abc123");
-    })
+    });
 
     afterEach(() => {
       localStorage.clear();
-    })
+    });
 
     it("calls the API on render with the correct data", () => {
-      const url = 'https://api.bybits.co.uk/policys/details';
+      const url = "https://api.bybits.co.uk/policys/details";
       const config = {
         headers: {
-          "environment": "mock",
-          "Authorization": "Bearer Abc123",
-          "Content-type": "application/json"
-        }
-      }
+          environment: "mock",
+          Authorization: "Bearer Abc123",
+          "Content-type": "application/json",
+        },
+      };
       render(<Policy />);
       expect(axios.get).toHaveBeenCalledWith(url, config);
     });
-  })
+
+    it("displays data correctly from the API", async () => {
+      axios.get.mockResolvedValue({ data: APIResponse });
+      await act(() => {
+        render(<Policy />);
+      });
+      await waitFor(() => expect(axios.get).toHaveBeenCalled());
+      expect(screen.getByText(/apple-orange-pear/i)).toBeInTheDocument();
+    });
+  });
 });
