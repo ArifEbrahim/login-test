@@ -10,16 +10,22 @@ describe("Policy page", () => {
     expect(header).toBeInTheDocument();
   });
 
-  it('should render policy sections', () => {
+  it("should render policy sections", () => {
     render(<Policy />);
-    const policyRef = screen.getByText("Policy reference")
-    const coverType = screen.getByText('Cover type')
-    const car = screen.getByText('Car')
-    const name = screen.getByText('Name')
-    const address = screen.getByText('Address')
+    const policyRef = screen.getByText("Policy reference");
+    const coverType = screen.getByText("Cover type");
+    const car = screen.getByText("Car");
+    const name = screen.getByText("Name");
+    const address = screen.getByText("Address");
     expect(policyRef).toBeInTheDocument();
     expect(coverType).toBeInTheDocument();
     expect(car).toBeInTheDocument(name);
     expect(address).toBeInTheDocument();
-  })
+  });
+
+  it("has a sign out button", () => {
+    render(<Policy />);
+    const signOutBtn = screen.getByText("Sign out");
+    expect(signOutBtn).toBeInTheDocument();
+  });
 });
