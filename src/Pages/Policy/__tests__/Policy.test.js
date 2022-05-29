@@ -2,6 +2,9 @@ import React from "react";
 import Policy from "../index";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import axios from "axios";
+
+jest.mock("axios");
 
 describe("Policy page", () => {
   it("has an element with the correct header text", () => {
@@ -27,5 +30,10 @@ describe("Policy page", () => {
     render(<Policy />);
     const signOutBtn = screen.getByText("Sign out");
     expect(signOutBtn).toBeInTheDocument();
+  });
+
+  it("calls the API on render", () => {
+    render(<Policy />);
+    expect(axios.get).toHaveBeenCalled();
   });
 });
