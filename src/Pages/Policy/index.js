@@ -4,7 +4,7 @@ import PolicySection from "../../Components/PolicySection";
 import Button from "../../Components/Button";
 
 export default function Policy() {
-  useEffect(() => {
+  const getAPIData = async() => {
     const url = 'https://api.bybits.co.uk/policys/details';
     const token = localStorage.getItem('token')
     const config = {
@@ -14,8 +14,12 @@ export default function Policy() {
         "Content-type": "application/json"
       }
     }
-    axios.get(url, config);
-  });
+    await axios.get(url, config);
+  }
+
+  useEffect(() => {
+    getAPIData();
+  },[]);
 
   return (
     <>
