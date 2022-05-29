@@ -5,7 +5,16 @@ import Button from "../../Components/Button";
 
 export default function Policy() {
   useEffect(() => {
-    axios.get();
+    const url = 'https://api.bybits.co.uk/policys/details';
+    const token = localStorage.getItem('token')
+    const config = {
+      headers: {
+        "environment": "mock",
+        "Authorization": `Bearer ${token}`,
+        "Content-type": "application/json"
+      }
+    }
+    axios.get(url, config);
   });
 
   return (

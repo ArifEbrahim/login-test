@@ -32,8 +32,27 @@ describe("Policy page", () => {
     expect(signOutBtn).toBeInTheDocument();
   });
 
-  it("calls the API on render", () => {
-    render(<Policy />);
-    expect(axios.get).toHaveBeenCalled();
-  });
+  describe('API tests', () => {
+
+    beforeEach(() => {
+      localStorage.setItem("token", "Abc123");
+    })
+
+    afterEach(() => {
+      localStorage.clear();
+    })
+
+    it("calls the API on render with the correct data", () => {
+      const url = 'https://api.bybits.co.uk/policys/details';
+      const config = {
+        headers: {
+          "environment": "mock",
+          "Authorization": "Bearer Abc123",
+          "Content-type": "application/json"
+        }
+      }
+      render(<Policy />);
+      expect(axios.get).toHaveBeenCalledWith(url, config);
+    });
+  })
 });
