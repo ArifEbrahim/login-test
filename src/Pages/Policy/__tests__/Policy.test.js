@@ -15,10 +15,11 @@ describe("Policy page", () => {
     const policyRef = screen.getByText("Policy reference")
     const coverType = screen.getByText('Cover type')
     const car = screen.getByText('Car')
+    const name = screen.getByText('Name')
     const address = screen.getByText('Address')
     expect(policyRef).toBeInTheDocument();
     expect(coverType).toBeInTheDocument();
-    expect(car).toBeInTheDocument();
+    expect(car).toBeInTheDocument(name);
     expect(address).toBeInTheDocument();
   })
 });
