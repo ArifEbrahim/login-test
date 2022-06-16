@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function PolicySection(props) {
-  const { label, text } = props;
+  const { label, text} = props;
 
   return (
     <div>
