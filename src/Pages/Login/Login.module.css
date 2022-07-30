@@ -1,0 +1,33 @@
+.login-container {
+  width: 90vw;
+  margin: auto;
+}
+
+.login-header {
+  text-align: center;
+  margin-top: 15rem;
+}
+
+.form-container-1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+form {
+  width: 28rem;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 0px 26px 12px;
+}
+
+.form-container-2 {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+}

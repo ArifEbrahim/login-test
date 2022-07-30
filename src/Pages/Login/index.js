@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
-import "./Login.css";
+import styles from "./Login.module.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -28,30 +29,29 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-      <header className="login-header">
+    <div className={styles['login-container']}>
+      <header className={styles['login-header']}>
         <h2>Sign In</h2>
       </header>
-      <main className="form-container-1">
+      <main className={styles['form-container-1']}>
         <form>
-          <div className="form-container-2">
+          <div className={styles['form-container-2']}>
             <Input
               onChange={setUsername}
               value={username}
               label="Username"
               id="username"
+              type="text"
             />
             <Input
               onChange={setPassword}
               value={password}
               label="Password"
-              id='password'
+              id="password"
+              type="password"
             />
-            <div className="btn-container">
-              <Button 
-                text="Sign in"
-                onClick={handleClick}
-              />
+            <div className={styles['btn-container']}>
+              <Button text="Sign in" onClick={handleClick} />
             </div>
           </div>
         </form>

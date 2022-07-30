@@ -1,0 +1,21 @@
+.btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  transform: skewX(-20deg);
+  background-color: black;
+  margin-right: 10px;
+  transition-duration: 0.3s;
+}
+
+button:hover {
+  box-shadow: inset 85px 0 0 grey;
+}
+
+.btn-text {
+  font-weight: 600;
+  font-size: 12px;
+  transform: skewX(20deg);
+  display: inline-block;
+  text-transform: uppercase;
+  color: white;
+}
