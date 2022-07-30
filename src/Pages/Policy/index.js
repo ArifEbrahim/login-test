@@ -4,7 +4,13 @@ import { isEmpty } from "lodash";
 
 import PolicySection from "../../Components/PolicySection";
 import Button from "../../Components/Button";
-import { formatPolicyRef } from "../../utils/formatText";
+import {
+  formatPolicyRef,
+  formatCoverType,
+  formatCar,
+  formatName,
+  formatAddress,
+} from "../../utils/formatText";
 
 export default function Policy() {
   const [policy, setPolicy] = useState({});
@@ -22,7 +28,7 @@ export default function Policy() {
       };
       try {
         const response = await axios.get(url, config);
-        setPolicy(response.data.policy);
+        setPolicy(response.data);
       } catch (error) {}
     };
 
@@ -40,10 +46,10 @@ export default function Policy() {
             label={"Policy reference"}
             text={formatPolicyRef(policy)}
           />
-          <PolicySection label={"Cover type"} />
-          <PolicySection label={"Car"} />
-          <PolicySection label={"Name"} />
-          <PolicySection label={"Address"} />
+          <PolicySection label={"Cover type"} text={formatCoverType(policy)} />
+          <PolicySection label={"Car"} text={formatCar(policy)} />
+          <PolicySection label={"Name"} text={formatName(policy)} />
+          <PolicySection label={"Address"} text={formatAddress(policy)}/>
           <Button text={"Sign out"} />
         </>
       )}
