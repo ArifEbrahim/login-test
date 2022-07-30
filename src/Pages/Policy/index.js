@@ -4,16 +4,11 @@ import { isEmpty } from "lodash";
 
 import PolicySection from "../../Components/PolicySection";
 import Button from "../../Components/Button";
-import {
-  formatPolicyRef,
-  formatCoverType,
-  formatCar,
-  formatName,
-  formatAddress,
-} from "../../utils/formatText";
+import TextFormatter from "../../utils/text-formatter";
 
 export default function Policy() {
   const [policy, setPolicy] = useState({});
+  const tf = new TextFormatter(policy);
 
   useEffect(() => {
     const getAPIData = async () => {
@@ -35,6 +30,7 @@ export default function Policy() {
     getAPIData();
   }, []);
 
+
   return (
     <>
       {isEmpty(policy) ? (
@@ -44,12 +40,12 @@ export default function Policy() {
           <h2>My Policy</h2>
           <PolicySection
             label={"Policy reference"}
-            text={formatPolicyRef(policy)}
+            text={tf.formatPolicyRef()}
           />
-          <PolicySection label={"Cover type"} text={formatCoverType(policy)} />
-          <PolicySection label={"Car"} text={formatCar(policy)} />
-          <PolicySection label={"Name"} text={formatName(policy)} />
-          <PolicySection label={"Address"} text={formatAddress(policy)}/>
+          <PolicySection label={"Cover type"} text={tf.formatCoverType()} />
+          <PolicySection label={"Car"} text={tf.formatCar()} />
+          <PolicySection label={"Name"} text={tf.formatName()} />
+          <PolicySection label={"Address"} text={tf.formatAddress()}/>
           <Button text={"Sign out"} />
         </>
       )}
