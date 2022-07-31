@@ -7,6 +7,7 @@ import PolicySection from "../../Components/PolicySection";
 import Button from "../../Components/Button";
 import TextFormatter from "../../utils/text-formatter";
 import styles from "./Policy.module.css";
+import Header from "../../Components/Header";
 
 export default function Policy() {
   const [policy, setPolicy] = useState({});
@@ -45,9 +46,7 @@ export default function Policy() {
       ) : (
         <>
           <div className={styles["policy-container"]}>
-            <header className={styles["policy-header"]}>
-              <h2>My Policy</h2>
-            </header>
+            <Header text="My Policy" />
             <section className={styles["policy-section"]}>
               <div className={styles["policy-box-1"]}>
                 <div className={styles["policy-box-2"]}>

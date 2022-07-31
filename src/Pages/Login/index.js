@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import styles from "./Login.module.css";
+import Header from "../../Components/Header";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -35,9 +36,7 @@ export default function Login() {
 
   return (
     <div className={styles["login-container"]}>
-      <header className={styles["login-header"]}>
-        <h2>Sign In</h2>
-      </header>
+      <Header text="Sign In" />
       <main className={styles["form-container-1"]}>
         <form onSubmit={submitHandler}>
           <div className={styles["form-container-2"]}>
