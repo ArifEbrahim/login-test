@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import axios from "axios";
 import userEvent from "@testing-library/user-event";
@@ -28,11 +28,11 @@ describe("Policy page", () => {
 
     it("should render policy sections", async () => {
       render(<Policy />);
-      const policyRef = await screen.findByText("Policy reference");
-      const coverType = await screen.findByText("Cover type");
-      const car = await screen.findByText("Car");
-      const name = await screen.findByText("Name");
-      const address = await screen.findByText("Address");
+      const policyRef = await screen.findByText("Policy reference:");
+      const coverType = await screen.findByText("Cover type:");
+      const car = await screen.findByText("Car:");
+      const name = await screen.findByText("Name:");
+      const address = await screen.findByText("Address:");
       expect(policyRef).toBeInTheDocument();
       expect(coverType).toBeInTheDocument();
       expect(car).toBeInTheDocument();

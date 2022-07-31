@@ -1,31 +1,35 @@
-.login-container {
-  width: 90vw;
+.policy-container {
+  width: 90%;
   margin: auto;
 }
 
-.login-header {
+.policy-header {
   display: flex;
   justify-content: center;
   margin-top: 5rem;
 }
 
-.form-container-1 {
+.policy-section {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
 }
 
-form {
+.policy-box-1 {
   width: 28rem;
   background-color: white;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 15%) 0px 0px 26px 12px;
 }
 
-.form-container-2 {
-  display: flex;
-  flex-direction: column;
+.vehicle-box,
+.proposer-box,
+.policy-box-2 {
   margin: 1rem;
+}
+
+.section-header {
+  text-align: center;
 }
 
 .btn-container {

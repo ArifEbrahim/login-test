@@ -6,7 +6,7 @@ import PolicySection from "../PolicySection";
 describe('PolicySection', () => {
   it('Correctly displays a label and text field', () => {
     render(<PolicySection label={'Test label'} text={'Test text'} />)
-    const label = screen.getByText('Test label');
+    const label = screen.getByText('Test label:');
     const text = screen.getByText('Test text');
     expect(label).toBeInTheDocument();
     expect(text).toBeInTheDocument();

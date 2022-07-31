@@ -18,7 +18,9 @@ export default function Login() {
     },
   };
 
-  const handleClick = async () => {
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
     const data = {
       username,
       password,
@@ -37,14 +39,13 @@ export default function Login() {
         <h2>Sign In</h2>
       </header>
       <main className={styles["form-container-1"]}>
-        <form>
+        <form onSubmit={submitHandler}>
           <div className={styles["form-container-2"]}>
             <Input
               onChange={setUsername}
               value={username}
               label="Username"
               id="username"
-              type="text"
             />
             <Input
               onChange={setPassword}
@@ -54,7 +55,7 @@ export default function Login() {
               type="password"
             />
             <div className={styles["btn-container"]}>
-              <Button text="Sign in" onClick={handleClick} />
+              <Button colour='dark' text="Sign in" type="submit"/>
             </div>
           </div>
         </form>

@@ -1,0 +1,14 @@
+.policy-section-container {
+  display: flex;
+}
+
+.policy-section-label {
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.policy-section-text {
+  line-height: 1.5;
+  margin-left: 3px;
+  text-transform: capitalize;
+}

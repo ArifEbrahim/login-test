@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import PolicySection from "../../Components/PolicySection";
 import Button from "../../Components/Button";
 import TextFormatter from "../../utils/text-formatter";
+import styles from "./Policy.module.css";
 
 export default function Policy() {
   const [policy, setPolicy] = useState({});
@@ -43,16 +44,38 @@ export default function Policy() {
         <p>Loading...</p>
       ) : (
         <>
-          <h2>My Policy</h2>
-          <PolicySection
-            label={"Policy reference"}
-            text={tf.formatPolicyRef()}
-          />
-          <PolicySection label={"Cover type"} text={tf.formatCoverType()} />
-          <PolicySection label={"Car"} text={tf.formatCar()} />
-          <PolicySection label={"Name"} text={tf.formatName()} />
-          <PolicySection label={"Address"} text={tf.formatAddress()} />
-          <Button text={"Sign out"} onClick={signOutHandler} />
+          <div className={styles["policy-container"]}>
+            <header className={styles["policy-header"]}>
+              <h2>My Policy</h2>
+            </header>
+            <section className={styles["policy-section"]}>
+              <div className={styles["policy-box-1"]}>
+                <div className={styles["policy-box-2"]}>
+                  <h3 className={styles['section-header']}>Policy details</h3>
+                  <PolicySection
+                    label={"Policy reference"}
+                    text={tf.formatPolicyRef()}
+                  />
+                  <PolicySection
+                    label={"Cover type"}
+                    text={tf.formatCoverType()}
+                  />
+                </div>
+                <div className={styles["vehicle-box"]}>
+                  <h3 className={styles['section-header']}>Vehicle details</h3>
+                  <PolicySection label={"Car"} text={tf.formatCar()} />
+                </div>
+                <div className={styles["proposer-box"]}>
+                  <h3 className={styles['section-header']}>Proposer details</h3>
+                  <PolicySection label={"Name"} text={tf.formatName()} />
+                  <PolicySection label={"Address"} text={tf.formatAddress()} />
+                </div>
+                <div className={styles['btn-container']}>
+                  <Button colour='light' text='Sign out' onClick={signOutHandler}/>
+                </div>
+              </div>
+            </section>
+          </div>
         </>
       )}
     </>

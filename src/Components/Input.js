@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Input.module.css";
 
 export default function Input(props) {
-  const { onChange, label, value, id, type } = props;
+  const { onChange, label, value, id, type='text' } = props;
 
   return (
     <>
@@ -14,6 +14,7 @@ export default function Input(props) {
         onChange={(e) => onChange(e.target.value)}
         value={value}
         className={styles.input}
+        required
       />
     </>
   );
