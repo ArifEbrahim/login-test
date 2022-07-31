@@ -14,3 +14,9 @@ I implemented the following improvements:
 - added a test to check that the user is redirected e.g. when signing in or out
 - refactored code to reduce hook dependancies and avoid re-render loops
 - added a placeholder component to display whilst the App gets data from the API
+
+### Future work
+
+- Context to check if user is logged in and stop access to the policy page
+- more tests around router navigation
+- extract the login form into a seperate component
