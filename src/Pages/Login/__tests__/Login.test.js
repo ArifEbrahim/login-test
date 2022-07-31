@@ -21,7 +21,7 @@ describe("Login page", () => {
         <Login />
       </BrowserRouter>
     );
-    const header = screen.getByText("Sign In");
+    const header = screen.getByText(/Sign In/);
     expect(header).toBeInTheDocument();
   });
 
@@ -31,8 +31,8 @@ describe("Login page", () => {
         <Login />
       </BrowserRouter>
     );
-    const usernameLabel = screen.getByLabelText("Username");
-    const usernameInput = screen.getByTestId("username-input");
+    const usernameLabel = screen.getByLabelText(/Username/);
+    const usernameInput = screen.getByTestId(/username-input/);
     expect(usernameLabel).toBeInTheDocument();
     expect(usernameInput).toBeInTheDocument();
   });
@@ -43,8 +43,8 @@ describe("Login page", () => {
         <Login />
       </BrowserRouter>
     );
-    const passwordLabel = screen.getByLabelText("Password");
-    const passwordInput = screen.getByTestId("password-input");
+    const passwordLabel = screen.getByLabelText(/Password/);
+    const passwordInput = screen.getByTestId(/password-input/);
     expect(passwordLabel).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
   });
@@ -55,7 +55,7 @@ describe("Login page", () => {
         <Login />
       </BrowserRouter>
     );
-    const submitBtn = screen.getByText("Sign in");
+    const submitBtn = screen.getByText(/Sign in/);
     expect(submitBtn).toBeInTheDocument();
   });
 
@@ -65,7 +65,7 @@ describe("Login page", () => {
         <Login />
       </BrowserRouter>
     );
-    userEvent.click(screen.getByText("Sign in"));
+    userEvent.click(screen.getByText(/Sign in/));
     expect(axios.post).toHaveBeenCalled();
   });
 
@@ -96,9 +96,9 @@ describe("Login page", () => {
           <Login />
         </BrowserRouter>
       );
-      userEvent.type(screen.getByTestId("username-input"), data.username);
-      userEvent.type(screen.getByTestId("password-input"), data.password);
-      userEvent.click(screen.getByText("Sign in"));
+      userEvent.type(screen.getByTestId(/username-input/), data.username);
+      userEvent.type(screen.getByTestId(/password-input/), data.password);
+      userEvent.click(screen.getByText(/Sign in/));
       expect(axios.post).toHaveBeenCalledWith(url, data, config);
     });
 
@@ -108,7 +108,7 @@ describe("Login page", () => {
           <Login />
         </BrowserRouter>
       );
-      userEvent.click(screen.getByText("Sign in"));
+      userEvent.click(screen.getByText(/Sign in/));
       await waitFor(() => expect(axios.post).toHaveBeenCalled());
       expect(localStorage.getItem("token")).toBe("123");
     });
@@ -119,7 +119,7 @@ describe("Login page", () => {
           <Login />
         </BrowserRouter>
       );
-      userEvent.click(screen.getByText("Sign in"));
+      userEvent.click(screen.getByText(/Sign in/));
       await waitFor(() => expect(axios.post).toHaveBeenCalled());
       expect(mockedUseNavigate).toHaveBeenCalled();
     });

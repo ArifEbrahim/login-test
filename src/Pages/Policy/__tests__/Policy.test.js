@@ -17,7 +17,7 @@ jest.mock("react-router-dom", () => ({
 describe("Policy page", () => {
   it("displays a loading message while fetching data", () => {
     render(<Policy />);
-    const loadingEl = screen.getByText("Loading...");
+    const loadingEl = screen.getByText(/Loading.../);
     expect(loadingEl).toBeInTheDocument();
   });
 
@@ -28,11 +28,11 @@ describe("Policy page", () => {
 
     it("should render policy sections", async () => {
       render(<Policy />);
-      const policyRef = await screen.findByText("Policy reference:");
-      const coverType = await screen.findByText("Cover type:");
-      const car = await screen.findByText("Car:");
-      const name = await screen.findByText("Name:");
-      const address = await screen.findByText("Address:");
+      const policyRef = await screen.findByText(/Policy reference:/);
+      const coverType = await screen.findByText(/Cover type:/);
+      const car = await screen.findByText(/Car:/);
+      const name = await screen.findByText(/Name:/);
+      const address = await screen.findByText(/Address:/);
       expect(policyRef).toBeInTheDocument();
       expect(coverType).toBeInTheDocument();
       expect(car).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe("Policy page", () => {
 
     it("has a sign out button", async () => {
       render(<Policy />);
-      const signOutBtn = await screen.findByText("Sign out");
+      const signOutBtn = await screen.findByText(/Sign out/);
       expect(signOutBtn).toBeInTheDocument();
     });
   });
@@ -72,11 +72,11 @@ describe("Policy page", () => {
     it("displays data correctly from the API", async () => {
       axios.get.mockResolvedValue({ data: APIResponse });
       render(<Policy />);
-      const policyRef = await screen.findByText("apple orange pear");
-      const coverType = await screen.findByText("Comprehensive");
-      const car = await screen.findByText("Tesla S black - WO123XX");
-      const name = await screen.findByText("Dave Jones");
-      const address = await screen.findByText("Flat 1, 11 The Street, Little Hampton, W53TR");
+      const policyRef = await screen.findByText(/apple orange pear/);
+      const coverType = await screen.findByText(/Comprehensive/);
+      const car = await screen.findByText(/Tesla S black - WO123XX/);
+      const name = await screen.findByText(/Dave Jones/);
+      const address = await screen.findByText(/Flat 1, 11 The Street, Little Hampton, W53TR/);
       expect(policyRef).toBeInTheDocument();
       expect(coverType).toBeInTheDocument();
       expect(car).toBeInTheDocument();
@@ -90,8 +90,8 @@ describe("Policy page", () => {
     render(
         <Policy />
     );
-    await screen.findByText("Dave Jones");
-    userEvent.click(screen.getByText("Sign out"));
+    await screen.findByText(/Dave Jones/);
+    userEvent.click(screen.getByText(/Sign out/));
     expect(mockedUseNavigate).toHaveBeenCalled();
   })
 });
