@@ -1,11 +1,18 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import axios from "axios";
+import userEvent from "@testing-library/user-event";
 import Policy from "../index";
 import APIResponse from "../__mocks__/APIResponse.json";
 
 jest.mock("axios");
+
+const mockedUseNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUseNavigate,
+}));
 
 describe("Policy page", () => {
   it("displays a loading message while fetching data", () => {
@@ -77,4 +84,14 @@ describe("Policy page", () => {
       expect(name).toBeInTheDocument();
     });
   });
+
+  it('sign out button signs out the user', async () => {
+    axios.get.mockResolvedValue({ data: APIResponse });
+    render(
+        <Policy />
+    );
+    await screen.findByText("Dave Jones");
+    userEvent.click(screen.getByText("Sign out"));
+    expect(mockedUseNavigate).toHaveBeenCalled();
+  })
 });

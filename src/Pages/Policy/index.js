@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { isEmpty } from "lodash";
+import { useNavigate } from "react-router-dom";
 
 import PolicySection from "../../Components/PolicySection";
 import Button from "../../Components/Button";
@@ -9,6 +10,7 @@ import TextFormatter from "../../utils/text-formatter";
 export default function Policy() {
   const [policy, setPolicy] = useState({});
   const tf = new TextFormatter(policy);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getAPIData = async () => {
@@ -30,6 +32,10 @@ export default function Policy() {
     getAPIData();
   }, []);
 
+  const signOutHandler = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   return (
     <>
@@ -45,8 +51,8 @@ export default function Policy() {
           <PolicySection label={"Cover type"} text={tf.formatCoverType()} />
           <PolicySection label={"Car"} text={tf.formatCar()} />
           <PolicySection label={"Name"} text={tf.formatName()} />
-          <PolicySection label={"Address"} text={tf.formatAddress()}/>
-          <Button text={"Sign out"} />
+          <PolicySection label={"Address"} text={tf.formatAddress()} />
+          <Button text={"Sign out"} onClick={signOutHandler} />
         </>
       )}
     </>
